@@ -32,8 +32,10 @@ public class Main {
         //Получить свойство элемента и запишем его в переменную
         String par = element.getAttribute("clientHeight");
         String par1 = element.getAttribute("href");
+        //Выводит текст, отображаемый пользователю
+        String par2 = element.getText();
         //Выведем их на экран
-        System.out.println(par + " " + par1);
+        System.out.println(par + " " + par1 + " " + par2);
         //Действие с элементом
         element.click();
         //В конце закрываем браузер
