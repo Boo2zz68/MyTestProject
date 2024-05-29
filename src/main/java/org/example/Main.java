@@ -18,6 +18,8 @@ public class Main {
         WebDriver driver = new ChromeDriver();
         //Пример: задаем явные ожидания 10с - ждем пока элемент мог не прогрузиться на странице
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //Изменение параметров экрана - полный
+        driver.manage().window().maximize();
         //Пример: неявные ожидания на примере конкретного элемента
         //Создаем экземпляр, создаем новый элемент
         //WebElement elementTime = (new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -41,8 +43,15 @@ public class Main {
         //Записываем стили в переменную
         String parametr1 = element1.getCssValue("font");
         System.out.println(parametr1);
-        //Действие с элементом
+        //Действие с элементом, метод клик
         element.click();
+        //Выставляем параметры фильтрации для поиска на сайте
+        WebElement element2 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[115]/span[1]"));
+        WebElement element3 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[3]/span[1]"));
+        WebElement element4 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[3]/span[1]"));
+        element2.click();
+        element4.click();
+        element4.click();
         //В конце закрываем браузер
         driver.close();
 
