@@ -13,7 +13,7 @@ import java.time.Duration;
 public class Main {
     public static void main(String[] args) {
         //Подключаем скаченный экземпляр веб драйвера для Хрома
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Пользователь\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Пользователь\\Downloads\\chromedriver-win64-(1)\\chromedriver-win64\\chromedriver.exe");
         //Создаем экземпляр класса веб драйвер
         WebDriver driver = new ChromeDriver();
         //Пример: задаем явные ожидания 10с - ждем пока элемент мог не прогрузиться на странице
@@ -36,6 +36,11 @@ public class Main {
         String par2 = element.getText();
         //Выведем их на экран
         System.out.println(par + " " + par1 + " " + par2);
+        //Верстка стилей - обращаемся к элементу
+        WebElement element1 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[3]/a[1]/span[1]"));
+        //Записываем стили в переменную
+        String parametr1 = element1.getCssValue("font");
+        System.out.println(parametr1);
         //Действие с элементом
         element.click();
         //В конце закрываем браузер
