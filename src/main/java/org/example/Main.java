@@ -1,6 +1,7 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -47,15 +48,22 @@ public class Main {
         //Выбираем товар, фильтрация
         WebElement element1 = driver.findElement(By.xpath("//div[@class='index_cat_menu']//a[@class='root-item'][contains(text(),'Товары для малышей')]"));
         WebElement element2 = driver.findElement(By.xpath("//div[@class='index_cat_menu']//a[contains(text(),'Прогулочные коляски')]"));
-        //WebElement element3 = driver.findElement(By.xpath("//div[@class='bx_filter_container price']"));
-        //WebElement element4 = driver.findElement(By.xpath("//input[@id='set_filter']"));
         //Для более сложных манипуляций с элементами новый класс action
         //На вход всегда передаем driver
         Actions action = new Actions(driver);
         action
                 .moveToElement(element1)
                 .click(element2)
-
+                .build()
+                .perform();
+        WebElement element3 = driver.findElement(By.xpath("//input[@id='arrFilter_P1_MAX']"));
+        WebElement element4 = driver.findElement(By.xpath("//input[@id='set_filter']"));
+        action
+                .click(element3)
+                .sendKeys(element3, Keys.DELETE)
+                .sendKeys(element3, "10000")
+                .click(element4)
+                .release()
                 .build()
                 .perform();
         //Засыпание, чтобы визуально зафиксировать результат
