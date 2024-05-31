@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,32 +29,45 @@ public class Main {
 
         //Теперь можно обращаться к драйверу
         //Например, перейти на соответствующий урл
-        driver.get("https://icity-store.ru/");
+        driver.get("https://bananababy.ru/");
         //Переменная, где храним ссылку на элемент
-        WebElement element = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[1]/a[1]/span[1]"));
+        WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Каталог товаров')]"));
         //Получить свойство элемента и запишем его в переменную
-        String par = element.getAttribute("clientHeight");
-        String par1 = element.getAttribute("href");
+        String par = element.getAttribute("height");
+        String par1 = element.getAttribute("line-height");
         //Выводит текст, отображаемый пользователю
         String par2 = element.getText();
         //Выведем их на экран
         System.out.println(par + " " + par1 + " " + par2);
         //Верстка стилей - обращаемся к элементу
-        WebElement element1 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[3]/a[1]/span[1]"));
         //Записываем стили в переменную
-        String parametr1 = element1.getCssValue("font");
+        String parametr1 = element.getCssValue("color");
         System.out.println(parametr1);
         //Действие с элементом, метод клик
-        element.click();
-        //Выставляем параметры фильтрации для поиска на сайте
-        WebElement element2 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[115]/span[1]"));
-        WebElement element3 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[3]/span[1]"));
-        WebElement element4 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[3]/span[1]"));
-        element2.click();
-        element4.click();
-        element4.click();
-        //В конце закрываем браузер
-        driver.close();
+        //Выбираем товар, фильтрация
+        WebElement element1 = driver.findElement(By.xpath("//div[@class='index_cat_menu']//a[@class='root-item'][contains(text(),'Товары для малышей')]"));
+        WebElement element2 = driver.findElement(By.xpath("//div[@class='index_cat_menu']//a[contains(text(),'Прогулочные коляски')]"));
+        //WebElement element3 = driver.findElement(By.xpath("//div[@class='bx_filter_container price']"));
+        //WebElement element4 = driver.findElement(By.xpath("//input[@id='set_filter']"));
+        //Для более сложных манипуляций с элементами новый класс action
+        //На вход всегда передаем driver
+        Actions action = new Actions(driver);
+        action
+                .moveToElement(element1)
+                .click(element2)
 
+                .build()
+                .perform();
+        //Засыпание, чтобы визуально зафиксировать результат
+        try {
+            Thread.sleep(4000);
+            //В конце закрываем браузер
+            driver.close();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            //Выключаем driver
+            driver.quit();
+        }
     }
 }
