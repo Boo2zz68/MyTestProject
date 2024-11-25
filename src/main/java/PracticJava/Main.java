@@ -5,5 +5,6 @@ public class Main {
         Cycles.arrayMinMax();
         Cycles.arrayReverse();
         Cycles.arrayDiagonal();
+        StringPractice.stringJob();
     }
 }
