@@ -6,5 +6,6 @@ public class Main {
         Cycles.arrayReverse();
         Cycles.arrayDiagonal();
         StringPractice.stringJob();
+        StringPractice.equalsString();
     }
 }
