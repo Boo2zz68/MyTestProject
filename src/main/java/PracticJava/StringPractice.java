@@ -41,6 +41,8 @@ public class StringPractice {
         else {
             System.out.println("Вы ошиблись! Попробуйте еще раз!");
         }
+            System.out.println("Верно!");
+        break;
         }
 
     }

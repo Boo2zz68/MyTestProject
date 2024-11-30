@@ -45,26 +45,26 @@ public class Main {
         String parametr1 = element.getCssValue("color");
         System.out.println(parametr1);
 
-        //Работа с модальными окнами (в выключенном состоянии)
-        //Есть некая кликабельная ссылка/кнопка на странице, вызывающая модальное окно
-        //WebElement element1 = driver.findElement(By.xpath("a"));
-        //element1.click();
-        //Функция alert для работы с модальными окнами
-        //Первый способ через switch, но есть вероятность, что окно не успеет подгрузится
-        //Alert alert = driver.switchTo().alert();
-        //Второй способ - через ожидания
-        //Создаем экземпляр явных ожиданий
-        //WebDriverWait wait = new WebDriverWait(driver, 1000);
-        //И запускаем alert, пока окно не появится
-        //Alert alert = wait.until(alertIsPresent());
-        //Далее прописываются действия с окном
-        //Например, если это уведомление, которое нужно принять Ок
-        //alert.accept();
-        //Если в окне есть некий ввод, то
-        //alert.sandKeys("text");
-        //alert.accept();
-        //Если в окне действия Ок и Отмена, то можно например отменить
-        //alert.dismiss();
+        /*Работа с модальными окнами (в выключенном состоянии)
+        Есть некая кликабельная ссылка/кнопка на странице, вызывающая модальное окно
+        WebElement element1 = driver.findElement(By.xpath("a"));
+        element1.click();
+        Функция alert для работы с модальными окнами
+        Первый способ через switch, но есть вероятность, что окно не успеет подгрузится
+        Alert alert = driver.switchTo().alert();
+        Второй способ - через ожидания
+        Создаем экземпляр явных ожиданий
+        WebDriverWait wait = new WebDriverWait(driver, 1000);
+        И запускаем alert, пока окно не появится
+        Alert alert = wait.until(alertIsPresent());
+        Далее прописываются действия с окном
+        Например, если это уведомление, которое нужно принять Ок
+        alert.accept();
+        Если в окне есть некий ввод, то
+        alert.sandKeys("text");
+        alert.accept();
+        Если в окне действия Ок и Отмена, то можно например отменить
+        alert.dismiss();*/
 
         //Действие с элементом, метод клик
         //Выбираем товар, фильтрация

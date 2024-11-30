@@ -22,4 +22,13 @@ public class TestData {
         }
         return telephone;
     }
+    //Генерация ИНН
+    public static String generateINN(){
+        Random random = new Random();
+        String inn = "";
+        for (int i = 0; i < 11; i++) {
+            inn += random.nextInt(10);
+        }
+        return inn;
+    }
 }

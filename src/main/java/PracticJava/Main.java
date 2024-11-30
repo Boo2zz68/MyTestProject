@@ -7,5 +7,6 @@ public class Main {
         Cycles.arrayDiagonal();
         StringPractice.stringJob();
         StringPractice.equalsString();
+        App app = new App();
     }
 }
