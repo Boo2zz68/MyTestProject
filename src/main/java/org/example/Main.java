@@ -1,20 +1,22 @@
 package org.example;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
-        //Подключаем скаченный экземпляр веб драйвера для Хрома
+        /*Подключаем скаченный экземпляр веб драйвера для Хрома - Вариант вручную
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Пользователь\\Downloads\\chromedriver-win64-(1)\\chromedriver-win64\\chromedriver.exe");
         //Создаем экземпляр класса веб драйвер
         WebDriver driver = new ChromeDriver();
@@ -29,6 +31,32 @@ public class Main {
         //        .until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//a[@class='woodmart-nav-link'])[31]"))));
 
         //Теперь можно обращаться к драйверу
+        */
+        //Инициализация вебрайвера, обновляет версию сам
+        WebDriverManager.chromedriver().setup();
+        //Настройка браузера
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito"); //инкогнито
+        //options.addArguments("--headless"); //фоновый режим
+        options.addArguments("start-maximized"); //максимальный размер окна
+        WebDriver driver = new ChromeDriver(options);
+        //Неявные ожидания
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        //Явные ожидания с условием
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlContains("условие"));
+        //Явное ожидание без условий для проверки ошибки NoSuchElementExeption
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //Проверка если структура dom обновлена и элемент в ней не найдет, findElement неактуален
+        //Элемент не имеет отношения к текущей дом-структуре
+        /*try {
+            webElement.sendKeys("авпп");
+        } catch (StaleElementReferenceException e) {
+            System.out.println(e.getSupportUrl());
+        }*/
         //Например, перейти на соответствующий урл
         driver.get("https://leonardo.ru/");
         //Переменная, где храним ссылку на элемент
