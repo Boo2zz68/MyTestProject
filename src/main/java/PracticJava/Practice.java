@@ -1,9 +1,8 @@
 package PracticJava;
 
-import java.io.InputStream;
 import java.util.Scanner;
 
-public class StringPractice {
+public class Practice {
     public static void stringJob() {
         String test = "Я изучаю Java";
         System.out.println("Исходная строка: " + test);
@@ -45,5 +44,18 @@ public class StringPractice {
         break;
         }
 
+    }
+    public static int arithmetic() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Метод деления чисел");
+        System.out.println("Введите: а");
+        int a = scanner.nextInt();
+        System.out.println("Введите: b");
+        int b = scanner.nextInt();
+        if (b == 0) {
+            throw new ArithmeticException("На ноль делить нельзя!");
+        }
+        System.out.println("Ответ: ");
+        return a/b;
     }
 }

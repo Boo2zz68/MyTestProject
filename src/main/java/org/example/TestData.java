@@ -3,7 +3,7 @@ package org.example;
 import java.util.Random;
 
 public class TestData {
-    public static void main(String[] args) {
+    public static void arrTelephone() {
         //Вывод массива сгенерированных телефонов
         String[] tels = new String[10];
         for(int i=0; i< tels.length; i++) {
