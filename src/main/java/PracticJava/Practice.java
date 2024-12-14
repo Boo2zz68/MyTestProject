@@ -1,5 +1,10 @@
 package PracticJava;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.Scanner;
 
 public class Practice {
@@ -45,7 +50,8 @@ public class Practice {
         }
 
     }
-    public static int arithmetic() {
+    //Ручной выброс эксепшена
+    public static int arithmeticTest() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Метод деления чисел");
         System.out.println("Введите: а");
@@ -57,5 +63,10 @@ public class Practice {
         }
         System.out.println("Ответ: ");
         return a/b;
+    }
+    //Проброс исключения - оно выбросится только при использовании метода
+    public static void exceptionTest() throws FileNotFoundException {
+        File file = new File("Test.txt");
+        InputStream in = new FileInputStream(file);
     }
 }

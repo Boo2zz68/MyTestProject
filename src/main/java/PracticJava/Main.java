@@ -1,5 +1,7 @@
 package PracticJava;
 
+import java.io.FileNotFoundException;
+
 public class Main {
     public static void main(String[] args) {
         /*Cycles.arrayMinMax();
@@ -10,6 +12,11 @@ public class Main {
         App app = new App();
         54
          */
-        Practice.arithmetic();
+        Practice.arithmeticTest();
+        try {
+            Practice.exceptionTest();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
