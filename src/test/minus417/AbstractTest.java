@@ -1,4 +1,4 @@
-package Atlant;
+package minus417;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;

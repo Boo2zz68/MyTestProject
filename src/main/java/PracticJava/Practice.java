@@ -32,6 +32,16 @@ public class Practice {
         //И перевод обратно в обычную строку
         result.toString();
     }
+    public static void concatenationString() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите первую строку");
+        String one = scanner.nextLine();
+        System.out.println("Введите вторую строку");
+        String two = scanner.nextLine();
+        System.out.println("Сумма строк");
+        String sum = one + two;
+        System.out.println(sum);
+    }
     public static void equalsString() {
         for (int i = 0; i < 3; i ++) {
         String test = "Я учу Java";

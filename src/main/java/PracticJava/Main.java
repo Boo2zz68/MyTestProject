@@ -10,13 +10,14 @@ public class Main {
         Practice.stringJob();
         Practice.equalsString();
         App app = new App();
-        54
-         */
         Practice.arithmeticTest();
         try {
             Practice.exceptionTest();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+
+         */
+        Practice.concatenationString();
     }
 }
