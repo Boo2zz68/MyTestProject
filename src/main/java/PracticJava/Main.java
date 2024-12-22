@@ -16,8 +16,9 @@ public class Main {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-         */
         Practice.concatenationString();
+        Practice.oneElement();
+         */
+        Practice.comparison();
     }
 }
