@@ -1,5 +1,9 @@
 package minus417;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -9,9 +13,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static io.qameta.allure.Allure.addAttachment;
+
 public class Authorization extends AbstractTest {
     //static Logger logger = LoggerFactory.getLogger(Authorization.class);
     @Test
+    @Description("Переход на вкладку Авторизация")
+    @Severity(SeverityLevel.NORMAL)
     void switchToPersonalAccount() throws InterruptedException {
         new WebDriverWait(getDriver(), Duration.ofSeconds(3))
                 .until(ExpectedConditions.urlContains("https://minus417ru.com/"));
@@ -22,8 +30,11 @@ public class Authorization extends AbstractTest {
                 .perform();
         String nameHost = getDriver().getCurrentUrl();
         Assertions.assertEquals(nameHost, "https://minus417ru.com/personal/orders/");
+        Allure.addAttachment("Авторизация", "скриншот");
         }
         @Test
+        @Description("Успешная авторизация")
+        @Severity(SeverityLevel.BLOCKER)
     void successAuthorization() {
             Actions action = new Actions(getDriver());
             action
@@ -38,6 +49,7 @@ public class Authorization extends AbstractTest {
                     .click(getDriver().findElement(By.xpath("//div[@class='bxmaker-authuserphone-enter-auth-by-password-form']//div[@class='bxmaker-authuserphone-button__inner']")))
                     .build()
                     .perform();
+            Allure.addAttachment("Авторизация", "скриншот");
         }
     /*
         @Test
