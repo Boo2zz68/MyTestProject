@@ -1,6 +1,6 @@
 package PracticJava;
 
-import org.example.TestData;
+import minus417.MyUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,8 +42,8 @@ public class App extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         //Действие по нажатию кнопки
-                        textFieldNumber.setText(TestData.generateTelephone());
-                        textFieldINN.setText(TestData.generateINN());
+                        textFieldNumber.setText(MyUtils.generateTelephone());
+                        textFieldINN.setText(MyUtils.generateINN());
                     }
                 }
         );

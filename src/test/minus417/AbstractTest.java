@@ -7,7 +7,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractTest {
@@ -23,6 +26,7 @@ public abstract class AbstractTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
+    //Переход на стартовую страницу
     @BeforeEach
     void goTo() {
         Assertions.assertDoesNotThrow( ()-> driver.navigate().to("https://minus417ru.com/"));
@@ -38,6 +42,18 @@ public abstract class AbstractTest {
         } finally {
             //Выключаем driver
             driver.quit();
+        }
+    }
+    //Логирование браузера
+    @AfterEach
+    public void checkBrowser() {
+        List<LogEntry> allLogRows = getDriver().manage().logs().get(LogType.BROWSER).getAll();
+        if (!allLogRows.isEmpty()) {
+            if(allLogRows.size() > 0) {
+                allLogRows.forEach(logEntry -> {
+                    System.out.println(logEntry.getMessage());
+                });
+            }
         }
     }
     public static WebDriver getDriver() {

@@ -1,8 +1,15 @@
-package org.example;
+package minus417;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
-public class TestData {
+public class MyUtils {
     public static void arrTelephone() {
         //Вывод массива сгенерированных телефонов
         String[] tels = new String[10];
@@ -30,5 +37,16 @@ public class TestData {
             inn += random.nextInt(10);
         }
         return inn;
+    }
+    //Скриншот экрана браузера
+    public static File makeScreenshot(WebDriver driver, String filename) {
+        File temp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File destination = new File("./target/" + filename);
+        try {
+            FileUtils.copyFile(temp, destination);
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        return destination;
     }
 }
