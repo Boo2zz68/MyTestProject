@@ -1,5 +1,6 @@
 package RestfulBooker;
 
+import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,21 +16,7 @@ public abstract class AbstractTest {
     }
     private static String baseUrl = "https://restful-booker.herokuapp.com";
     static File auth = new File("src/test/resources/auth.json");
-    @BeforeAll
-    static void authTest() {
-        String token = given()
-                .body(auth)
-                .header("Content-Type", "application/json")
-                .when()
-                .request(Method.POST,getBaseUrl() + "/auth")
-                .then()
-                .statusCode(200)
-                .extract()
-                .jsonPath()
-                .get("token")
-                .toString();
-        System.out.println("token: " + token);
-    }
+
     @BeforeAll
     static void pingTest() {
         given()
@@ -38,4 +25,5 @@ public abstract class AbstractTest {
                 .then()
                 .statusCode(201);
     }
+
 }
