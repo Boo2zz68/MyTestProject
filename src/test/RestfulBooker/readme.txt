@@ -1,0 +1,1 @@
+Здесь собраны api-тесты для сервиса https://restful-booker.herokuapp.com с применением библиотеки RestAssured

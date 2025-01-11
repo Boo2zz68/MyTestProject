@@ -5,6 +5,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertThat;
 
 public class RestfulBooker extends AbstractTest{
     /*@BeforeAll
@@ -26,21 +29,17 @@ public class RestfulBooker extends AbstractTest{
     @Severity(SeverityLevel.CRITICAL)
     void createBookingTest(){
         File createBooking = new File("src/test/resources/createBooking.json");
-        String bookingId = given()
+        JsonPath response = given().spec(getRequestSpecification())
                 .body(createBooking)
-                .header("Content-Type", "application/json")
                 .when()
                 .request(Method.POST, getBaseUrl() + "/booking")
-                .then()
-                .assertThat()
-                .statusCode(200)
-                .extract()
-                .jsonPath()
-                .get("bookingid")
-                .toString();
+                .body()
+                .jsonPath();
+
+        assertThat(response.get("booking.firstname"), equalTo("Alexandr"));
+        assertThat(response.get("booking.lastname"), equalTo("Butusov"));
         //.log() логирование запроса
         //.all()
-        System.out.println("bookingid: " + bookingId);
     }
     @Test
     @Description("Получение пользователя по Id")
@@ -199,6 +198,6 @@ public class RestfulBooker extends AbstractTest{
                 .when()
                 .request(Method.DELETE,getBaseUrl() + "/booking/" + bookingId)
                 .then()
-                .statusCode(201);
+                .spec(getResponseSpecification());
     }
 }
