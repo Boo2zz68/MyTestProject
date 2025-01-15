@@ -2,10 +2,15 @@ package petstore.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.*;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Getter
+@With
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class GetOrder {
+public class GetOrderResponse {
     @JsonProperty("id")
     private Integer id;
     @JsonProperty("petId")
@@ -16,6 +21,10 @@ public class GetOrder {
     private String shipDate;
     @JsonProperty("status")
     private String status;
-    @JsonProperty("status")
+    @JsonProperty("complete")
     private Boolean complete;
+    @JsonProperty("type")
+    private String type;
+    @JsonProperty("code")
+    private Integer code;
 }

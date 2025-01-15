@@ -1,11 +1,14 @@
 package petstore.api;
 
 import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import petstore.dto.GetOrder;
+import retrofit2.http.*;
+import petstore.dto.GetOrderResponse;
+import petstore.dto.GetUser;
 
 public interface ProductService {
-    @GET("/store/order/{id}")
-    Call<GetOrder> getPet(@Path("id") int id);
+    @Headers("accept: application/json")
+    @GET("/api/v3/store/order/{id}")
+    Call<GetOrderResponse> getOrder(@Path("id") int id);
+    @POST("/v2/user/createWithArray")
+    Call<GetUser> getUserCreate(@Body GetUser gerUserRequest);
 }
